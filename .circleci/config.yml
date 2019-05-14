@@ -74,7 +74,7 @@ jobs:
           at: ~/
       - run:
           name: check for "IEx.pry"
-          command: cd lib && ack 'IEx.pry' && exit 1 || exit 0
+          command: cd app/lib && ack 'IEx.pry' && exit 1 || exit 0
 
   dialyzer:
     <<: *defaults
