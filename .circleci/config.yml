@@ -73,8 +73,8 @@ jobs:
       - attach_workspace:
           at: ~/
       - run:
-        name: Install ripgrep
-        command: apt-get install ripgrep
+          name: Install ripgrep
+          command: apt-get install ripgrep
       - run:
           name: check for IEx.pry
           command: rg 'IEx.pry' && exit 1 || exit 0
