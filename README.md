@@ -18,3 +18,23 @@ Ready to run in production? Please [check our deployment guides](https://hexdocs
   * Docs: https://hexdocs.pm/phoenix
   * Mailing list: http://groups.google.com/group/phoenix-talk
   * Source: https://github.com/phoenixframework/phoenix
+
+## Pre-push hook
+
+The following pre-push hook validates that the circle config is valid before anything is committed. It wouldn't make sense to push a broken ci config when a push to the remote triggers a ci run.
+
+You will have to run `brew install circleci` first.
+
+```bash
+#!/usr/bin/env bash
+
+# The following line is needed by the CircleCI Local Build Tool (due to Docker interactivity)
+exec < /dev/tty
+
+# If validation fails, tell Git to stop and provide error message. Otherwise, continue.
+if ! eMSG=$(circleci config validate -c .circleci/config.yml); then
+	echo "CircleCI Configuration Failed Validation."
+	echo $eMSG
+	exit 1
+fi
+```
