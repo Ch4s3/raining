@@ -23,7 +23,7 @@ Ready to run in production? Please [check our deployment guides](https://hexdocs
 
 The following pre-push hook validates that the circle config is valid before anything is committed. It wouldn't make sense to push a broken ci config when a push to the remote triggers a ci run.
 
-You will have to run `brew install circleci` first.
+You will have to run `brew install circleci` first
 
 ```bash
 #!/usr/bin/env bash
