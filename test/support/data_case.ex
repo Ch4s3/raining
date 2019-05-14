@@ -1,5 +1,5 @@
 defmodule Raining.DataCase do
-  alias Ecto.Adapters.SQL
+  alias Ecto.Adapters.SQL.Sandbox
 
   @moduledoc """
   This module defines the setup for tests requiring

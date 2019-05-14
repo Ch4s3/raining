@@ -1,5 +1,5 @@
 defmodule RainingWeb.ChannelCase do
-  alias Ecto.Adapters.SQL
+  alias Ecto.Adapters.SQL.Sandbox
 
   @moduledoc """
   This module defines the test case to be used by
