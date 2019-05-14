@@ -76,15 +76,15 @@ jobs:
           keys:
             - v1-plt-cache-{{ checksum "mix.lock" }}
             - v1-plt-cache
-      - run: MIX_ENV=dev mix dialyzer --plt
+      - run: mix dialyzer --plt
       - save_cache:
           key: v1-plt-cache-{{ checksum "mix.lock" }}
           paths:
-            - _build/dev/
+            - _build
             - ~/.mix
       - run:
           name: Run dialyzer
-          command: MIX_ENV=dev mix dialyzer --halt-exit-status
+          command: mix dialyzer --halt-exit-status
   deploy:
     <<: *defaults
     steps:
