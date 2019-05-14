@@ -7,9 +7,9 @@ defaults: &defaults
         MIX_ENV: test
         CODECOV_TOKEN: fa53a02b-c3e8-4abc-b405-8df6e543c868
     - image: circleci/postgres
-        environment:
-          POSTGRES_USER: root
-          POSTGRES_DB: postgres
+      environment:
+        POSTGRES_USER: root
+        POSTGRES_DB: postgres
 
 jobs:
   build:
