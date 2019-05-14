@@ -25,7 +25,8 @@ config :logger, :console,
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
 
-config :darkskyx, api_key: System.get_env("DARKSKY_API_KEY"),
+config :darkskyx,
+  api_key: System.get_env("DARKSKY_API_KEY"),
   defaults: [
     units: "us",
     lang: "en"

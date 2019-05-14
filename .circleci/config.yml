@@ -8,8 +8,7 @@ defaults: &defaults
         CODECOV_TOKEN: fa53a02b-c3e8-4abc-b405-8df6e543c868
     - image: circleci/postgres
       environment:
-        POSTGRES_USER: root
-        POSTGRES_DB: postgres
+        POSTGRES_USER: postgres
 
 jobs:
   build:
@@ -74,7 +73,7 @@ jobs:
           keys:
             - v1-plt-cache-{{ checksum "mix.lock" }}
             - v1-plt-cache
-      - run: mix dialyzer --plt
+      - run: mix dialyzer --plt --halt-exit-status
       - save_cache:
           key: v1-plt-cache-{{ checksum "mix.lock" }}
           paths:

@@ -4,7 +4,8 @@ defmodule Raining.Weather.Client do
   """
 
   @type status_code :: integer
-  @type response :: {:ok, [struct]} | {:ok, struct} | :ok | {:error, map, status_code} | {:error, map}
+  @type response ::
+          {:ok, [struct]} | {:ok, struct} | :ok | {:error, map, status_code} | {:error, map}
 
   @doc """
   Latitude and Longitude based get function
