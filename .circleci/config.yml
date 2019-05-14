@@ -66,7 +66,14 @@ jobs:
       - run:
           name: Verify formatted
           command: mix format --check-formatted
-
+  static_security_checks:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/
+      - run:
+          name: Run Sobelow
+          command: mix sobelow --config
   dialyzer:
     <<: *defaults
     steps:
@@ -113,6 +120,9 @@ workflows:
       - dialyzer:
           requires:
             - build
+      - static_security_checks:
+          requires:
+            - build
       - hold:
           type: approval
           requires:
@@ -121,6 +131,7 @@ workflows:
             - credo
             - dialyzer
             - check_formatted
+            - static_security_checks
           filters:
             branches:
               only: master

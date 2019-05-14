@@ -53,7 +53,8 @@ defmodule Raining.MixProject do
       {:credo, "~> 1.0.0", only: [:dev, :test], runtime: false},
       {:dialyxir, "~> 1.0.0-rc.6", only: [:dev, :test], runtime: false},
       {:darkskyx, "~> 0.1.5"},
-      {:excoveralls, "~> 0.8", only: :test}
+      {:excoveralls, "~> 0.8", only: :test},
+      {:sobelow, ">= 0.0.0", only: [:dev, :test], runtime: false}
     ]
   end
 

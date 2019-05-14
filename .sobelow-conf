@@ -1,0 +1,11 @@
+[
+  verbose: true,
+  private: false,
+  skip: false,
+  router: "",
+  exit: "high",
+  format: "txt",
+  out: "",
+  ignore: ["Config.HTTPS"],
+  ignore_files: ["/Users/chase/code/raining/config/prod.secret.exs"]
+]
