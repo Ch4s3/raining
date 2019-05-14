@@ -67,6 +67,18 @@ jobs:
           name: Verify formatted
           command: mix format --check-formatted
 
+  check_pry:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/
+      - run:
+        name: Install ripgrep
+        command: apt-get install ripgrep
+      - run:
+          name: check for IEx.pry
+          command: rg 'IEx.pry' && exit 1 || exit 0
+
   dialyzer:
     <<: *defaults
     steps:
@@ -108,6 +120,9 @@ workflows:
           requires:
             - build
       - credo:
+          requires:
+            - build
+      - check_pry:
           requires:
             - build
       - dialyzer:
