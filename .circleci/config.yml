@@ -120,6 +120,7 @@ workflows:
             - test
             - credo
             - dialyzer
+            - check_formatted
           filters:
             branches:
               only: master
