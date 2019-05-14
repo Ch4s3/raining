@@ -41,7 +41,7 @@ jobs:
     steps:
       - attach_workspace:
           at: ~/
-      - run:  # special utility that stalls main process until DB is ready
+      - run: # special utility that stalls main process until DB is ready
           name: Wait for DB
           command: dockerize -wait tcp://localhost:5432 -timeout 1m
       - run:
@@ -76,7 +76,7 @@ jobs:
           keys:
             - v1-plt-cache-{{ checksum "mix.lock" }}
             - v1-plt-cache
-      - run: mix dialyzer --plt --halt-exit-status
+      - run: mix dialyzer --plt
       - save_cache:
           key: v1-plt-cache-{{ checksum "mix.lock" }}
           paths:
@@ -84,13 +84,13 @@ jobs:
             - ~/.mix
       - run:
           name: Run dialyzer
-          command: mix dialyzer
+          command: mix dialyzer --halt-exit-status
   deploy:
     <<: *defaults
     steps:
       - attach_workspace:
           at: ~/
-      - setup_remote_docker 
+      - setup_remote_docker
       - run:
           name: "LAUNCH"
           command: |
