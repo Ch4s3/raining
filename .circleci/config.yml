@@ -2,7 +2,7 @@ version: 2
 defaults: &defaults
   working_directory: ~/app
   docker:
-    - image: ch4s3/elixir-ci
+    - image: circleci/elixir:1.8.2
       environment:
         MIX_ENV: test
         CODECOV_TOKEN: fa53a02b-c3e8-4abc-b405-8df6e543c868
@@ -122,6 +122,8 @@ workflows:
             branches:
               only: master
       - deploy:
+          requires:
+            - hold
           filters:
             branches:
               only: master
