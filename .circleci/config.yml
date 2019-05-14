@@ -67,15 +67,6 @@ jobs:
           name: Verify formatted
           command: mix format --check-formatted
 
-  check_pry:
-    <<: *defaults
-    steps:
-      - attach_workspace:
-          at: ~/
-      - run:
-          name: check for "IEx.pry"
-          command: cd /lib && ack 'IEx.pry' && exit 1 || exit 0
-
   dialyzer:
     <<: *defaults
     steps:
@@ -109,10 +100,7 @@ workflows:
   version: 2
   continuous_integration:
     jobs:
-      - check_pry
-      - build:
-          requires:
-            - check_pry
+      - build
       - test:
           requires:
             - build
