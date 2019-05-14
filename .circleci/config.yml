@@ -74,7 +74,7 @@ jobs:
           at: ~/
       - run:
           name: Install ripgrep
-          command: apt-get install ripgrep
+          command: sudo apt-get install ripgrep
       - run:
           name: check for "IEx.pry"
           command: rg 'IEx.pry' && exit 1 || exit 0
@@ -112,7 +112,10 @@ workflows:
   version: 2
   continuous_integration:
     jobs:
-      - build
+      - check_pry
+      - build:
+          requires:
+            - check_pry
       - test:
           requires:
             - build
@@ -120,9 +123,6 @@ workflows:
           requires:
             - build
       - credo:
-          requires:
-            - build
-      - check_pry:
           requires:
             - build
       - dialyzer:
