@@ -1,5 +1,7 @@
 # Raining
 
+[![CircleCI](https://circleci.com/gh/Ch4s3/raining/tree/master.svg?style=svg)](https://circleci.com/gh/Ch4s3/raining/tree/master)
+
 To start your Phoenix server:
 
   * Install dependencies with `mix deps.get`
