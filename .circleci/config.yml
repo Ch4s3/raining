@@ -2,7 +2,7 @@ version: 2
 defaults: &defaults
   working_directory: ~/app
   docker:
-    - image: circleci/elixir:1.8.2
+    - image: circleci/elixir:1.8.1
       environment:
         MIX_ENV: test
         CODECOV_TOKEN: fa53a02b-c3e8-4abc-b405-8df6e543c868
