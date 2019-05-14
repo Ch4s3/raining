@@ -1,4 +1,6 @@
 defmodule RainingWeb.ConnCase do
+  alias Ecto.Adapters.SQL
+
   @moduledoc """
   This module defines the test case to be used by
   tests that require setting up a connection.
@@ -27,10 +29,10 @@ defmodule RainingWeb.ConnCase do
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Raining.Repo)
+    :ok = Sandbox.checkout(Raining.Repo)
 
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(Raining.Repo, {:shared, self()})
+      Sandbox.mode(Raining.Repo, {:shared, self()})
     end
 
     {:ok, conn: Phoenix.ConnTest.build_conn()}

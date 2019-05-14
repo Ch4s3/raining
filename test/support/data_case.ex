@@ -1,4 +1,6 @@
 defmodule Raining.DataCase do
+  alias Ecto.Adapters.SQL
+
   @moduledoc """
   This module defines the setup for tests requiring
   access to the application's data layer.
@@ -26,10 +28,10 @@ defmodule Raining.DataCase do
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Raining.Repo)
+    :ok = Sandbox.checkout(Raining.Repo)
 
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(Raining.Repo, {:shared, self()})
+      Sandbox.mode(Raining.Repo, {:shared, self()})
     end
 
     :ok

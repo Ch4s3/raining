@@ -1,4 +1,6 @@
 defmodule RainingWeb.ChannelCase do
+  alias Ecto.Adapters.SQL
+
   @moduledoc """
   This module defines the test case to be used by
   channel tests.
@@ -26,10 +28,10 @@ defmodule RainingWeb.ChannelCase do
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Raining.Repo)
+    :ok = Sandbox.checkout(Raining.Repo)
 
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(Raining.Repo, {:shared, self()})
+      Sandbox.mode(Raining.Repo, {:shared, self()})
     end
 
     :ok

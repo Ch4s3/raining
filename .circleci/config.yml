@@ -56,7 +56,7 @@ jobs:
           at: ~/
       - run:
           name: Run credo
-          command: mix credo
+          command: mix credo --strict
 
   check_formatted:
     <<: *defaults
