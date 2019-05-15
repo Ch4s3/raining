@@ -95,9 +95,7 @@ jobs:
   deploy:
     <<: *defaults
     steps:
-      - attach_workspace:
-          at: ~/
-      - setup_remote_docker
+      - checkout
       - run:
           name: "LAUNCH"
           command: git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git master
