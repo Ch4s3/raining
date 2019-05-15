@@ -24,6 +24,16 @@ config :raining, Raining.Repo,
   ssl: true,
   url: System.get_env("DATABASE_URL")
 
+config :sentry,
+  dsn: "https://19aa38276feb495ba5684da857e59534@sentry.io/1459652",
+  environment_name: :prod,
+  enable_source_code_context: true,
+  root_source_code_path: File.cwd!(),
+  tags: %{
+    env: "production"
+  },
+  included_environments: [:prod]
+
 # Do not print debug messages in production
 config :logger, level: :info
 
