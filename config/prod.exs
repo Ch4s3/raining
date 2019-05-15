@@ -12,6 +12,7 @@ use Mix.Config
 
 config :raining, RainingWeb.Endpoint,
   load_from_system_env: true,
+  server: true,
   url: [scheme: "https", host: "protected-forest-93172.herokuapp.com", port: 443],
   force_ssl: [rewrite_on: [:x_forwarded_proto]],
   cache_static_manifest: "priv/static/cache_manifest.json",
