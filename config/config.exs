@@ -32,6 +32,9 @@ config :darkskyx,
     lang: "en"
   ]
 
+config :sentry,
+  dsn: "https://public:secret@app.getsentry.com/1"
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env()}.exs"

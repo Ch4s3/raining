@@ -54,7 +54,8 @@ defmodule Raining.MixProject do
       {:dialyxir, "~> 1.0.0-rc.6", only: [:dev, :test], runtime: false},
       {:darkskyx, "~> 0.1.5"},
       {:excoveralls, "~> 0.8", only: :test},
-      {:sobelow, ">= 0.0.0", only: [:dev, :test], runtime: false}
+      {:sobelow, ">= 0.0.0", only: [:dev, :test], runtime: false},
+      {:sentry, "~> 7.0"}
     ]
   end
 
