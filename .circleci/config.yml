@@ -1,18 +1,24 @@
 version: 2
-defaults: &defaults
+elixir_and_postgres: &elixir_and_postgres
   working_directory: ~/app
   docker:
     - image: circleci/elixir:1.8.1
       environment:
         MIX_ENV: test
-        CODECOV_TOKEN: fa53a02b-c3e8-4abc-b405-8df6e543c868
+        CODECOV_TOKEN: $CODECOV_TOKEN
     - image: circleci/postgres
       environment:
         POSTGRES_USER: postgres
+elixir_only: &elixir_only
+  working_directory: ~/app
+  docker:
+    - image: circleci/elixir:1.8.1
+      environment:
+        MIX_ENV: test
 
 jobs:
   build:
-    <<: *defaults
+    <<: *elixir_only
     steps:
       - checkout
       - restore_cache:
@@ -37,7 +43,7 @@ jobs:
             - .mix
 
   test:
-    <<: *defaults
+    <<: *elixir_and_postgres
     steps:
       - attach_workspace:
           at: ~/
@@ -50,7 +56,7 @@ jobs:
       - run: bash <(curl -s https://codecov.io/bash)
 
   credo:
-    <<: *defaults
+    <<: *elixir_only
     steps:
       - attach_workspace:
           at: ~/
@@ -59,7 +65,7 @@ jobs:
           command: mix credo --strict
 
   check_formatted:
-    <<: *defaults
+    <<: *elixir_only
     steps:
       - attach_workspace:
           at: ~/
@@ -67,7 +73,7 @@ jobs:
           name: Verify formatted
           command: mix format --check-formatted
   static_security_checks:
-    <<: *defaults
+    <<: *elixir_only
     steps:
       - attach_workspace:
           at: ~/
@@ -75,7 +81,7 @@ jobs:
           name: Run Sobelow
           command: mix sobelow --config
   dialyzer:
-    <<: *defaults
+    <<: *elixir_only
     steps:
       - attach_workspace:
           at: ~/
@@ -93,22 +99,27 @@ jobs:
           name: Run dialyzer
           command: mix dialyzer --halt-exit-status
   deploy:
-    <<: *defaults
+    <<: *elixir_only
     steps:
       - checkout
       - run:
           name: "LAUNCH"
           command: git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git master
-  docs:
-    <<: *defaults
+  build_docs:
+    <<: *elixir_only
     steps:
       - attach_workspace:
           at: ~/
       - run:
           name: Generate Docs
           command: mix docs -f epub
+      - run:
+          name: Make Dir and Move File
+          command: |
+            mkdir tmp/doc
+            mv /doc/Raining.epub /tmp/doc
       - store_artifacts:
-          path: /doc/Raining.epub
+          path: /tmp/doc
       # - run:
       #     name: Install Sendgrid
       #     command: gem install sendgrid-ruby
@@ -150,9 +161,6 @@ workflows:
       - deploy:
           requires:
             - hold
-          filters:
-            branches:
-              only: master
-      - docs:
+      - build_docs:
           requires:
-            - deploy
+            - hold
