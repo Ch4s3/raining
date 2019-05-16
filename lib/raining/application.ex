@@ -10,13 +10,13 @@ defmodule Raining.Application do
     children = [
       # Start the Ecto repository
       Raining.Repo,
-      :ok = ScoutApm.Instruments.EctoTelemetry.attach(Raining.Repo),
       # Start the endpoint when the application starts
       RainingWeb.Endpoint
       # Starts a worker by calling: Raining.Worker.start_link(arg)
       # {Raining.Worker, arg},
     ]
 
+    :ok = ScoutApm.Instruments.EctoTelemetry.attach(Raining.Repo)
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
     opts = [strategy: :one_for_one, name: Raining.Supervisor]
