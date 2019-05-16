@@ -20,6 +20,7 @@ defmodule RainingWeb do
   def controller do
     quote do
       use Phoenix.Controller, namespace: RainingWeb
+      use ScoutApm.Instrumentation
 
       import Plug.Conn
       import RainingWeb.Gettext
