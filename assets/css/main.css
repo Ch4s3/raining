@@ -651,18 +651,31 @@ select {
   width: 100vw;
   width: auto;
   display: grid;
-  grid-template-columns: 20% 60% 20%;
+  align-items: center;
+  grid-gap: 1rem;
+  grid-template-columns: auto 60% auto;
   grid-template-areas: "wt wt wt"
     "wl wm wr"
     "wb wb wb";
 }
 
-.grid-center {
-  grid-area: m;
-}
-
 .weather-inner {
   grid-area: wm;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+}
+
+.weather-inner #place-select {
+  width: 100%
+}
+
+.weather-inner form p {
+  font-size: 0.85em;
+}
+
+.weather-inner .yes-no {
+  font-size: 3em;
 }
 
 .weather.yes-rain {
@@ -675,5 +688,14 @@ select {
 }
 
 .weather.no-rain {
+  background-color: #ECEFF1;
+}
+
+.weather-button.no-rain {
+  background-color: #1565C0;
+}
+
+.weather-button.yes-rain {
+  color: #1565C0;
   background-color: #ECEFF1;
 }

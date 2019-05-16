@@ -9,7 +9,7 @@ defmodule RainingWeb.WeatherLive do
       <div class="weather <%= @rain %>" id="weather">
         <div class="weather-inner">
           <h1> Is It Raining Right Now? </h1>
-          <%= @raining %>
+          <p class="yes-no"><%= @raining %></p>
           <form phx-change="set-location">
             <p>Try Somewhere Else:</p>
             <select id="place-select" name="location" placeholder="Location" value="<%= @location%>"/>
@@ -22,6 +22,7 @@ defmodule RainingWeb.WeatherLive do
               <option value="Beijing">Beijing</option>
             </select>
           </form>
+          <input class="weather-button <%= @rain %>"type="button" value="My Location" onClick="window.location.reload()">
         </div>
       </div>
     """
