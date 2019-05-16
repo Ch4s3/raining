@@ -25,7 +25,7 @@ defmodule Raining.Weather.Client do
     forecast["currently"]["precipType"] == "rain"
   end
 
-  def get_city_lat_lng("Las Angeles"), do: %{lat: 34.0201613, lng: -118.6919124}
+  def get_city_lat_lng("Los Angeles"), do: %{lat: 34.0201613, lng: -118.6919124}
   def get_city_lat_lng("Warsaw"), do: %{lat: 52.232855, lng: 20.9211111}
   def get_city_lat_lng("Tutendo"), do: %{lat: 5.7446055, lng: -76.5443794}
   def get_city_lat_lng("Seatle"), do: %{lat: 47.6129432, lng: -122.4821483}

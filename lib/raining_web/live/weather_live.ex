@@ -14,7 +14,7 @@ defmodule RainingWeb.WeatherLive do
             <p>Try Somewhere Else:</p>
             <select id="place-select" name="location" placeholder="Location" value="<%= @location%>"/>
               <option value="">Pick A Different City</option>
-              <option value="Las Angeles">Las Angeles</option>
+              <option value="Los Angeles">Los Angeles</option>
               <option value="Warsaw">Warsaw</option>
               <option value="Tutendo">Tutendo</option>
               <option value="Seatle">Seatle</option>
