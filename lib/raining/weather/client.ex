@@ -22,7 +22,12 @@ defmodule Raining.Weather.Client do
 
   @spec is_it_raining?(struct()) :: true | false
   def is_it_raining?(forecast) do
-    forecast["currently"]["precipType"] == "rain"
+    current = forecast["currently"]
+    current["precipType"] == "rain" && current["precipIntensity"] > 0.2
+  end
+
+  def temp(forecast) do
+    forecast["currently"]["apparentTemperature"]
   end
 
   def get_city_lat_lng("Los Angeles"), do: %{lat: 34.0201613, lng: -118.6919124}

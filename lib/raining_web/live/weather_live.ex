@@ -10,6 +10,9 @@ defmodule RainingWeb.WeatherLive do
         <div class="weather-inner">
           <h1> Is It Raining Right Now? </h1>
           <p class="yes-no"><%= @raining %></p>
+
+          <h1> Temperature </h1>
+          <p class="yes-no"><%= @temp %></p>
           <form phx-change="set-location">
             <p>Try Somewhere Else:</p>
             <select id="place-select" name="location" placeholder="Location" value="<%= @location%>"/>
@@ -30,7 +33,8 @@ defmodule RainingWeb.WeatherLive do
 
   def mount(_session, socket) do
     # RainingWeb.Endpoint.subscribe(@topic)
-    {:ok, assign(socket, raining: "Loading...", location: "", rain: "no-rain")}
+    {:ok,
+     assign(socket, raining: "Loading...", temp: "Loading...", location: "", rain: "no-rain")}
   end
 
   def handle_info({:put, location}, socket) do
@@ -45,24 +49,28 @@ defmodule RainingWeb.WeatherLive do
     {:ok, forecast} = Client.get_forecast(location)
 
     raining = Client.is_it_raining?(forecast)
+    temp = Client.temp(forecast)
 
     {:noreply,
      assign(socket, %{
        raining: raining_display(raining),
        location: location,
-       rain: raining_class(raining)
+       rain: raining_class(raining),
+       temp: temp
      })}
   end
 
   def handle_event("set_lat_lon", %{"lat" => lat, "lon" => lon}, socket) do
     {:ok, forecast} = Client.get_forecast(lat, lon)
     raining = Client.is_it_raining?(forecast)
+    temp = Client.temp(forecast)
 
     {:noreply,
      assign(socket, %{
        raining: raining_display(raining),
        location: "",
-       rain: raining_class(raining)
+       rain: raining_class(raining),
+       temp: temp
      })}
   end
 
