@@ -106,7 +106,9 @@ jobs:
       - run:
           name: Generate Docs
           command: mix docs -f epub
-      - run: gem install sendgrid-ruby
+      - run:
+          name: Generate Docs
+          command: gem install sendgrid-ruby
       - run:
           name: "SendDocs"
           command: ruby scripts/email_docs.rb
@@ -149,5 +151,5 @@ workflows:
             branches:
               only: master
       - docs:
-        requires:
-          - deploy
+          requires:
+            - deploy
