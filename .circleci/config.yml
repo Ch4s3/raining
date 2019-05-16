@@ -116,6 +116,8 @@ jobs:
       - run:
           name: Install Ruby
           command: |
+            export MY_EMAIL=$MY_EMAIL
+            echo $MY_EMAIL
             chmod +x ./scripts/install_ruby.sh
             ./scripts/install_ruby.sh
       - run:
