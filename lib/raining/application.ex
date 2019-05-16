@@ -2,7 +2,7 @@ defmodule Raining.Application do
   # See https://hexdocs.pm/elixir/Application.html
   # for more information on OTP Applications
   @moduledoc false
-
+  alias ScoutApm.Instruments.EctoTelemetry
   use Application
 
   def start(_type, _args) do
@@ -16,7 +16,7 @@ defmodule Raining.Application do
       # {Raining.Worker, arg},
     ]
 
-    :ok = ScoutApm.Instruments.EctoTelemetry.attach(Raining.Repo)
+    :ok = EctoTelemetry.attach(Raining.Repo)
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
     opts = [strategy: :one_for_one, name: Raining.Supervisor]
