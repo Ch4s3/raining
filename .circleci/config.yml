@@ -153,3 +153,7 @@ workflows:
       - docs:
           requires:
             - deploy
+            - hold
+          filters:
+            branches:
+              only: master
