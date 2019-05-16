@@ -10,6 +10,7 @@ defmodule Raining.Application do
     children = [
       # Start the Ecto repository
       Raining.Repo,
+      :ok = ScoutApm.Instruments.EctoTelemetry.attach(Raining.Repo),
       # Start the endpoint when the application starts
       RainingWeb.Endpoint
       # Starts a worker by calling: Raining.Worker.start_link(arg)
