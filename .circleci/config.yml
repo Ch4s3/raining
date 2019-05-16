@@ -115,10 +115,9 @@ jobs:
           command: mix docs -f epub
       - run:
           name: Install Ruby
-          command: sudo apt install ruby-full
-      - run:
-          name: Install Sendgrid
-          command: gem install sendgrid-ruby
+          command: |
+            chmod +x ./scripts/install_ruby.sh
+            ./scripts/install_ruby.sh
       - run:
           name: "SendDocs"
           command: ruby scripts/email_docs.rb
