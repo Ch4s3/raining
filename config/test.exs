@@ -9,6 +9,9 @@ config :raining, RainingWeb.Endpoint,
 # Print only warnings and errors during test
 config :logger, level: :warn
 
+config :sentry,
+  environment_name: :test
+
 # Configure your database
 config :raining, Raining.Repo,
   username: "postgres",
