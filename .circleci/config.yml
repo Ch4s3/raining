@@ -120,7 +120,7 @@ jobs:
             ./scripts/install_ruby.sh
       - run:
           name: "SendDocs"
-          command: ruby scripts/email_docs.rb
+          command: sudo ruby scripts/email_docs.rb
 workflows:
   version: 2
   continuous_integration:
