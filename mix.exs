@@ -18,6 +18,14 @@ defmodule Raining.MixProject do
         "coveralls.detail": :test,
         "coveralls.post": :test,
         "coveralls.html": :test
+      ],
+      name: "Raining",
+      source_url: "https://github.com/Ch4s3",
+      homepage_url: "https://protected-forest-93172.herokuapp.com/",
+      docs: [
+        # The main page in the docs
+        main: "Raining",
+        extras: ["README.md"]
       ]
     ]
   end
@@ -57,7 +65,8 @@ defmodule Raining.MixProject do
       {:excoveralls, "~> 0.8", only: :test},
       {:sobelow, ">= 0.0.0", only: [:dev, :test], runtime: false},
       {:sentry, "~> 7.0"},
-      {:phoenix_live_view, github: "phoenixframework/phoenix_live_view"}
+      {:phoenix_live_view, github: "phoenixframework/phoenix_live_view"},
+      {:ex_doc, "~> 0.19", only: :dev, runtime: false}
     ]
   end
 
