@@ -105,22 +105,6 @@ jobs:
       - run:
           name: "LAUNCH"
           command: git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git master
-  build_docs:
-    <<: *elixir_only
-    steps:
-      - attach_workspace:
-          at: ~/
-      - run:
-          name: Generate Docs
-          command: mix docs -f epub
-      - run:
-          name: Install Ruby
-          command: |
-            chmod +x ./scripts/install_ruby.sh
-            ./scripts/install_ruby.sh
-      - run:
-          name: "SendDocs"
-          command: sudo ruby scripts/email_docs.rb
 workflows:
   version: 2
   continuous_integration:
@@ -154,8 +138,5 @@ workflows:
             branches:
               only: master
       - deploy:
-          requires:
-            - hold
-      - build_docs:
           requires:
             - hold
