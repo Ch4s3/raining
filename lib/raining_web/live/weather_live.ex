@@ -33,7 +33,8 @@ defmodule RainingWeb.WeatherLive do
 
   def mount(_session, socket) do
     # RainingWeb.Endpoint.subscribe(@topic)
-    {:ok, assign(socket, raining: "Loading...", temp: "Loading...", location: "", rain: "no-rain")}
+    {:ok,
+     assign(socket, raining: "Loading...", temp: "Loading...", location: "", rain: "no-rain")}
   end
 
   def handle_info({:put, location}, socket) do
