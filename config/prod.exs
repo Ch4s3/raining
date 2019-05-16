@@ -27,8 +27,7 @@ config :raining, Raining.Repo,
   pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10"),
   ssl: true,
   url: System.get_env("DATABASE_URL"),
-  loggers: [{Ecto.LogEntry, :log, []},
-          {ScoutApm.Instruments.EctoLogger, :log, []}
+  loggers: [{Ecto.LogEntry, :log, []}, {ScoutApm.Instruments.EctoLogger, :log, []}]
 
 config :sentry,
   dsn: "https://19aa38276feb495ba5684da857e59534@sentry.io/1459652",
