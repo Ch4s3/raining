@@ -56,7 +56,8 @@ defmodule Raining.MixProject do
       {:darkskyx, "~> 0.1.5"},
       {:excoveralls, "~> 0.8", only: :test},
       {:sobelow, ">= 0.0.0", only: [:dev, :test], runtime: false},
-      {:sentry, "~> 7.0"}
+      {:sentry, "~> 7.0"},
+      {:phoenix_live_view, github: "phoenixframework/phoenix_live_view"}
     ]
   end
 

@@ -52,7 +52,8 @@ config :raining, RainingWeb.Endpoint,
       ~r{priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$},
       ~r{priv/gettext/.*(po)$},
       ~r{lib/raining_web/views/.*(ex)$},
-      ~r{lib/raining_web/templates/.*(eex)$}
+      ~r{lib/raining_web/templates/.*(eex)$},
+      ~r{lib/raining_web/live/.*(ex)$}
     ]
   ]
 
@@ -62,6 +63,9 @@ config :logger, :console, format: "[$level] $message\n"
 # Set a higher stacktrace during development. Avoid configuring such
 # in production as building large stacktraces may be expensive.
 config :phoenix, :stacktrace_depth, 20
+
+config :sentry,
+  environment_name: :dev
 
 # Initialize plugs at runtime for faster development compilation
 config :phoenix, :plug_init_mode, :runtime
