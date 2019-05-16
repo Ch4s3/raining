@@ -6,6 +6,6 @@
   exit: "high",
   format: "txt",
   out: "",
-  ignore: ["Config.HTTPS"],
+  ignore: ["Config.HTTPS", "Config.CSP"],
   ignore_files: ["/Users/chase/code/raining/config/prod.secret.exs"]
 ]
