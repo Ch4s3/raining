@@ -114,18 +114,14 @@ jobs:
           name: Generate Docs
           command: mix docs -f epub
       - run:
-          name: Make Dir and Move File
-          command: |
-            mkdir tmp/doc
-            mv /doc/Raining.epub /tmp/doc
-      - store_artifacts:
-          path: /tmp/doc
-      # - run:
-      #     name: Install Sendgrid
-      #     command: gem install sendgrid-ruby
-      # - run:
-      #     name: "SendDocs"
-      #     command: ruby scripts/email_docs.rb
+          name: Install Ruby
+          command: sudo apt install ruby-full
+      - run:
+          name: Install Sendgrid
+          command: gem install sendgrid-ruby
+      - run:
+          name: "SendDocs"
+          command: ruby scripts/email_docs.rb
 workflows:
   version: 2
   continuous_integration:
