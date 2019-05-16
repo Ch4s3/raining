@@ -1,7 +1,6 @@
 defmodule RainingWeb.WeatherLive do
   @moduledoc false
   use Phoenix.LiveView
-  use ScoutApm.Tracing
   alias Raining.Weather.Client
 
   @spec render(any()) :: Phoenix.LiveView.Rendered.t()
@@ -41,7 +40,6 @@ defmodule RainingWeb.WeatherLive do
     assign(socket, location: location)
   end
 
-  @transaction type: "web", name: "Weather.set-location"
   def handle_event("set-location", %{"location" => location}, socket) do
     {:ok, forecast} = Client.get_forecast(location)
 
@@ -55,7 +53,6 @@ defmodule RainingWeb.WeatherLive do
      })}
   end
 
-  @transaction type: "web", name: "Weather.set_lat_lon"
   def handle_event("set_lat_lon", %{"lat" => lat, "lon" => lon}, socket) do
     {:ok, forecast} = Client.get_forecast(lat, lon)
     raining = Client.is_it_raining?(forecast)
